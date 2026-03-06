@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+python-multipart
+pypdf
+langchain
+faiss-cpu
+openai
+pandas
+scikit-learn
+matplotlib
+plotly
+python-dotenv
+tqdm

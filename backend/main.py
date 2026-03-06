@@ -3,5 +3,5 @@ from fastapi import FastAPI
 app = FastAPI()
 
 @app.get("/")
-def read_root():
-    return {"message": "Resume JD Analyzer API is running"}
+def home():
+    return {"message": "Jobfolio AI Backend Running"}
