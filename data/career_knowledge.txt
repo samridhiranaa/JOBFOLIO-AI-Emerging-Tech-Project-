@@ -1,0 +1,19 @@
+Python Developer Projects:
+- Build a Flask REST API
+- Create a web scraping tool using BeautifulSoup
+
+Machine Learning Projects:
+- Build a plant classification CNN
+- Create a sentiment analysis model using NLP
+
+Docker Projects:
+- Dockerize a Flask API
+- Deploy a containerized web application
+
+SQL Projects:
+- Build a database-driven analytics dashboard
+- Create an inventory management system
+
+React Projects:
+- Build a personal portfolio website
+- Develop a task management dashboard
