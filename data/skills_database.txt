@@ -1,0 +1,24 @@
+Python
+Java
+C++
+Machine Learning
+Deep Learning
+SQL
+MongoDB
+Docker
+Kubernetes
+AWS
+React
+Node.js
+Flask
+Django
+REST API
+Git
+CI/CD
+TensorFlow
+PyTorch
+Data Analysis
+Pandas
+NumPy
+Computer Vision
+NLP
