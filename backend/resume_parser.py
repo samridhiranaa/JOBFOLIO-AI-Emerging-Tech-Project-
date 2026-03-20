@@ -1,63 +1,50 @@
 from pypdf import PdfReader
+import io
 import re
 
 
-def extract_text_from_pdf(file_path):
-    reader = PdfReader(file_path)
+# ---------------------------
+# 1. Extract text from PDF
+# ---------------------------
+def extract_text_from_resume(file_bytes):
+    pdf = PdfReader(io.BytesIO(file_bytes))
     text = ""
 
-    for page in reader.pages:
-        page_text = page.extract_text()
-        if page_text:
-            text += page_text
+    for page in pdf.pages:
+        text += page.extract_text() or ""
 
     return text
 
 
-# Known skills database
+# ---------------------------
+# 2. Skill database
+# ---------------------------
 SKILLS_DB = [
-    "python",
-    "java",
-    "c++",
-    "sql",
-    "machine learning",
-    "deep learning",
-    "react",
-    "node.js",
-    "docker",
-    "kubernetes",
-    "tensorflow",
-    "pytorch",
-    "data analysis",
-    "flask",
-    "fastapi",
-    "html",
-    "css",
-    "javascript",
-    "mysql",
-    "kotlin",
-    "xml",
-    "matlab",
-    "autocad",
-    "figma",
-    "canva",
-    "ui/ux"
+    "python", "java", "c++", "sql",
+    "machine learning", "deep learning",
+    "react", "node.js", "docker", "kubernetes",
+    "tensorflow", "pytorch",
+    "html", "css", "javascript", "mysql",
+    "kotlin", "xml", "matlab", "autocad",
+    "figma", "canva", "ui/ux"
 ]
 
 
+# ---------------------------
+# 3. Clean text (fix spaced letters)
+# ---------------------------
 def clean_text(text):
-    """
-    Fix PDFs that separate letters with spaces:
-    P Y T H O N → python
-    """
     text = text.lower()
 
-    # collapse spaced letters
-    text = re.sub(r'(?<=\b)([a-z])\s(?=[a-z]\b)', r'\1', text)
+    # Fix "P Y T H O N" → "python"
+    text = re.sub(r'(\b[a-z])\s(?=[a-z]\b)', r'\1', text)
 
     return text
 
 
+# ---------------------------
+# 4. Extract skills
+# ---------------------------
 def extract_skills(text):
     text = clean_text(text)
     found_skills = []
@@ -69,8 +56,11 @@ def extract_skills(text):
     return found_skills
 
 
-def parse_resume(file_path):
-    text = extract_text_from_pdf(file_path)
+# ---------------------------
+# 5. FINAL FUNCTION (IMPORTANT)
+# ---------------------------
+def parse_resume(file_bytes):
+    text = extract_text_from_resume(file_bytes)
     skills = extract_skills(text)
 
     return {

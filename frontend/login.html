@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jobfolio</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="sidebar" id="sidebar">
+    <div class="dash-container">
+      <div class="dash"></div>
+      <div class="dash"></div>
+      <div class="dash"></div>
+    </div>
+    <span class="close-btn" id="closeBtn">×</span>
+    <div class="registration-form">
+      <h2 class="form-title">JOBFOLIO</h2>
+      <p class="form-tagline">Your professional journey starts here</p>
+      <form id="registerForm">
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <input type="password" placeholder="Confirm Password" required>
+        <button type="submit" class="create">Create Account</button>
+      </form>
+      <p>Already have an account? <a class="toggle-form" id="showLogin">Login here</a></p>
+    </div>
+  </div>
+
+  <div class="container" id="mainContainer">
+    <div class="branding">
+      <h1>JOBFOLIO</h1>
+      <p>Your CV. Your story. Perfected.</p>
+      <form id="loginForm">
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+      <p>Don't have an account? <a class="toggle-form" id="showRegister">Register here</a></p>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>

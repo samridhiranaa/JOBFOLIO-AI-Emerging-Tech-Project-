@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f2f6b, #2447a6);
+    color: white;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 60px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: #facc15;
+}
+
+.nav-btn {
+    background: #facc15;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px;
+}
+
+.hero-left {
+    max-width: 500px;
+}
+
+.hero-left h1 {
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-left p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    flex-direction: column; /* only stacking, no layout break */
+}
+
+.primary {
+    background: #facc15;
+    color: black;
+    padding: 14px 28px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* added minimal styling for inputs */
+input, select {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+.hero-right img {
+    width: 450px;
+}
+
+.section {
+    padding: 60px;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background: rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #facc15;
+}
+
+.steps {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.step {
+    max-width: 200px;
+}
+
+.step h3 {
+    color: #facc15;
+    margin-bottom: 10px;
+}
+
+.preview-box {
+    background: rgba(255,255,255,0.08);
+    padding: 40px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.preview-box p {
+    margin: 10px 0;
+}
+
+.cta {
+    padding: 80px;
+    text-align: center;
+}
+
+.cta button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 18px;
+}
+
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-right img {
+        margin-top: 30px;
+        width: 300px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .steps {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">JOBFOLIO</div>
+    <button class="nav-btn">Login</button>
+</nav>
+
+<section class="hero">
+    <div class="hero-left">
+        <h1>AI Resume Intelligence</h1>
+        <p>Fix your resume. Beat ATS. Get hired faster.</p>
+
+        <div class="buttons">
+            <!-- FUNCTIONAL INPUTS -->
+            <input type="file" id="resume">
+
+            <select id="jobRole">
+                <option value="Python developer with SQL and Docker experience">Python Developer</option>
+                <option value="Machine Learning engineer with Python, TensorFlow, NLP">ML Engineer</option>
+                <option value="Frontend developer with React, JavaScript, CSS">Frontend Developer</option>
+                <option value="DevOps engineer with Docker, Kubernetes, CI/CD">DevOps Engineer</option>
+                <option value="Data analyst with Python, SQL">Data Analyst</option>
+            </select>
+
+            <button class="primary" onclick="analyzeResume()">Upload Resume</button>
+        </div>
+    </div>
+
+    <div class="hero-right">
+        <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png">
+    </div>
+</section>
+
+<!-- SAME PREVIEW BOX USED FOR OUTPUT -->
+<section class="section">
+    <h2>See Your Results</h2>
+
+    <div class="preview-box" id="output">
+        <p>Upload resume to see results</p>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section">
+    <h2>What Jobfolio Does</h2>
+
+    <div class="features">
+        <div class="card">
+            <h3>ATS Optimization</h3>
+            <p>Improve your resume score and pass filters.</p>
+        </div>
+
+        <div class="card">
+            <h3>Skill Gap Detection</h3>
+            <p>Identify missing skills instantly.</p>
+        </div>
+
+        <div class="card">
+            <h3>AI Suggestions</h3>
+            <p>Upgrade weak points in your resume.</p>
+        </div>
+
+        <div class="card">
+            <h3>Role Matching</h3>
+            <p>See which roles suit you best.</p>
+        </div>
+
+        <div class="card">
+            <h3>Project Ideas</h3>
+            <p>Get projects to improve your profile.</p>
+        </div>
+
+        <div class="card">
+            <h3>Dashboard Insights</h3>
+            <p>Visualize your performance clearly.</p>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+    <h2>How It Works</h2>
+
+    <div class="steps">
+        <div class="step">
+            <h3>1. Upload Resume</h3>
+            <p>Upload your CV in seconds</p>
+        </div>
+
+        <div class="step">
+            <h3>2. Add Job Description</h3>
+            <p>Paste the job role details</p>
+        </div>
+
+        <div class="step">
+            <h3>3. Get Analysis</h3>
+            <p>Receive AI-powered insights</p>
+        </div>
+    </div>
+</section>
+
+<script>
+async function analyzeResume(){
+
+const resumeFile=document.getElementById("resume").files[0]
+const jobRole=document.getElementById("jobRole").value
+
+if(!resumeFile){
+alert("Please upload a resume")
+return
+}
+
+let formData=new FormData()
+formData.append("resume",resumeFile)
+formData.append("job_description",jobRole)
+
+const response=await fetch("http://127.0.0.1:8000/analyze",{
+method:"POST",
+body:formData
+})
+
+const data=await response.json()
+
+let html=""
+
+html+="<p><strong>ATS Score:</strong> "+data.ats_score+"</p>"
+
+html+="<p><strong>Matched Skills:</strong><br>"+data.matched_skills.join(", ")+"</p>"
+
+html+="<p><strong>Missing Skills:</strong><br>"+data.missing_skills.join(", ")+"</p>"
+
+html+="<p><strong>Recommended Projects:</strong><br>"+data.recommended_projects.join(", ")+"</p>"
+
+document.getElementById("output").innerHTML=html
+}
+</script>
+
+</body>
+</html>
